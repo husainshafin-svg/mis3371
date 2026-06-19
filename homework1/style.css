@@ -1,1 +1,37 @@
 
+body {
+    background-color: #f5f9fc;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2b2b2b;
+}
+
+h2 {
+    margin: 0;
+    font-size: 32px;
+    font-family: 'Georgia', serif;
+    color: #0c4a6e;
+}
+
+a {
+    color: #0284c7;
+}
+
+a:visited {
+    color: #6b21a8;
+}
+
+#Banner {
+    display: flex;
+    align-items: center;
+}
+
+img[name="clinic-logo"] {
+    margin-right: 15px;
+}
+
+.date-box {
+    font-weight: bold;
+    margin-left: auto;
+    align-self: flex-start;
+    padding-top: 10px;
+}
