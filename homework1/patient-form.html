@@ -115,6 +115,47 @@
                 <option value="AB-">AB-</option>
                 <option value="AB+">AB+</option>
             </select><br>
+
+            <label for="symptoms" style="vertical-align: top;">Current Symptoms:</label>
+            <textarea id="symptoms" name="user_symptoms" rows="3" cols="50"></textarea><br>
+
+            <label>Medical Allergies:</label>
+            <input type="checkbox" id="alg1" name="allergies" value="seafood">
+            <label for="alg1" style="width:auto; font-weight:normal;">Seafood</label>
+            
+            <input type="checkbox" id="alg2" name="allergies" value="peanuts">
+            <label for="alg2" style="width:auto; font-weight:normal;">Peanuts</label>
+            
+            <input type="checkbox" id="alg3" name="allergies" value="sulfa">
+            <label for="alg3" style="width:auto; font-weight:normal;">Sulfa Drugs</label>
+            
+            <input type="checkbox" id="alg4" name="allergies" value="penicillin">
+            <label for="alg4" style="width:auto; font-weight:normal;">Penicillin</label>
+            
+            <input type="checkbox" id="alg5" name="allergies" value="latex">
+            <label for="alg5" style="width:auto; font-weight:normal;">Latex</label><br>
+
+            <label>Gender Identity:</label>
+            <input type="radio" id="genM" name="gender" value="male">
+            <label for="genM" style="width:auto; font-weight:normal;">Male</label>
+            
+            <input type="radio" id="genF" name="gender" value="female">
+            <label for="genF" style="width:auto; font-weight:normal;">Female</label>
+            
+            <input type="radio" id="genN" name="gender" value="nonbinary">
+            <label for="genN" style="width:auto; font-weight:normal;">Non-Binary</label><br>
+
+            <label>Tobacco User?</label>
+            <input type="radio" id="tobY" name="tobacco" value="yes">
+            <label for="tobY" style="width:auto; font-weight:normal;">Yes</label>
+            
+            <input type="radio" id="tobN" name="tobacco" value="no">
+            <label for="tobN" style="width:auto; font-weight:normal;">No</label><br>
+
+            <label for="health">Rate Health Status:</label>
+            <input type="range" id="health" name="health_rating" min="1" max="10"><br>
+
+            
         
     <script>
         const d = new Date();
