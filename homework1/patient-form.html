@@ -15,9 +15,17 @@
     <div id="Banner" style="display: flex; align-items: center;">
          <img src="logo.jpg" alt="Logo" width="100" height="100" style="float: left; margin-right: 15px;">
 
-         <h2 style= "margin: 0; font-size: 32px;" ></h2>CareFirst Medical</h2>
+         <h2 style= "margin: 0; font-size: 32px;" >CareFirst Medical</h2>
          <div style="clear: both;"></div>
+            Today's date: <span id="today"></span>
     </div>
+
+    <script>
+        const d = new Date();
+        let text = d.toLocaleDateString();
+        document.getElementById("today").innerHTML = text;
+    </script>
+    
 </body>
 </html>
 
