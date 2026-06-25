@@ -76,4 +76,8 @@ function getdata1() {
 
 function removedata1() {
   console.log("Form cleared.");
+
+function updateSliderDisplay(val) {
+  document.getElementById("health_val").textContent = val + " / 10";
+}
 }
