@@ -243,34 +243,42 @@
                     <td><span class="error-msg"></span></td>
                 </tr>
 
-                <tr>
-                    <td><label for="uid">UserID:</label></td>
-                    <td>
-                        <input type="text" id="uid" name="user_id" maxlength="30" placeholder="5-30 characters" required
-                               pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$"
-                               title="5 to 30 characters. Letters, numbers, hyphens, and underscores allowed. Cannot begin with a digit. No spaces.">
-                    </td>
-                    <td><span class="error-msg"></span></td>
-                </tr>
+         <tr>
+    <td><label for="uid">UserID:</label></td>
+    <td>
+        <input type="text" id="uid" name="user_id" maxlength="10" placeholder="5-10 characters" required
+               pattern="^[A-Za-z][A-Za-z0-9_-]{4,9}$"
+               title="5 to 10 characters. Letters, numbers, hyphens, and underscores allowed. Cannot begin with a digit. No spaces.">
+    </td>
+    <td><span class="error-msg"></span></td>
+</tr>
 
-                <tr>
-                    <td><label for="pwd">Password:</label></td>
-                    <td>
-                        <input type="password" id="pwd" name="account_password" required
-                               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=\\\/><.,`~])[A-Za-z\d!@#%^&*()\-_\+=\\\/><.,`~]{8,30}$"
-                               title="8-30 characters long string metrics. Must feature at least 1 uppercase character letter, 1 lowercase letter, 1 number, and 1 special character that is not a quote.">
-                    </td>
-                    <td><span class="error-msg"></span></td>
-                </tr>
+<tr>
+    <td><label for="pwd">Password:</label></td>
+    <td>
+        <input type="password" id="pwd" name="account_password" required
+               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=\\\/><.,`~])[A-Za-z\d!@#%^&*()\-_\+=\\\/><.,`~]{8,30}$"
+               title="8-30 characters long string metrics. Must feature at least 1 uppercase character letter, 1 lowercase letter, 1 number, and 1 special character that is not a quote.">
+        
+        <div id="message" style="display:none; background: #f3f4f6; padding: 10px; margin-top: 5px; border-radius: 4px; font-size: 13px;">
+            <p style="margin: 0 0 5px 0; font-weight: bold;">Password must contain the following:</p>
+            <p id="letter" class="invalid" style="margin: 3px 0; padding-left: 20px;">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid" style="margin: 3px 0; padding-left: 20px;">A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid" style="margin: 3px 0; padding-left: 20px;">A <b>number</b></p>
+            <p id="length" class="invalid" style="margin: 3px 0; padding-left: 20px;">Minimum <b>8 characters</b></p>
+        </div>
+    </td>
+    <td><span class="error-msg"></span></td>
+</tr>
 
-                <tr>
-                    <td><label for="rePwd">Re-enter Password:</label></td>
-                    <td>
-                        <input type="password" id="rePwd" name="password_verification" required
-                               title="Please re-type your chosen login sequence directly into this check field configuration to ensure correct input match execution.">
-                    </td>
-                    <td><span class="error-msg"></span></td>
-                </tr>
+<tr>
+    <td><label for="rePwd">Re-enter Password:</label></td>
+    <td>
+        <input type="password" id="rePwd" name="password_verification" required
+               title="Please re-type your chosen login sequence directly into this check field configuration to ensure correct input match execution.">
+    </td>
+    <td><span id="matchError" style="color: red; font-weight: bold;"></span></td>
+</tr>
 
                 <tr>
                     <td></td>
