@@ -11,193 +11,308 @@
 
 
 <html>
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <title>CareFirst Medical - Patient Registration</title>
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+
     <div id="Banner">
          <img src="logo.jpg" name="clinic-logo" alt="Logo" width="100" height="100">
-
          <h2>CareFirst Medical</h2>
-        
-           <div class="date-box">
-         Today's date: <span id="today"></span>
+         <div class="date-box">
+              Today's date: <span id="today"></span>
+         </div>
     </div>
- </div>
 
     <hr>
 
-    <div style= "font-family:verdana;">
-        <h3>Patient Registration Portal</h3>
+    <div style="font-family: verdana; padding: 10px;">
+        <h3>Patient Registration Portal (Homework 2 Edition)</h3>
 
-        <form action="thankyou.html">
+        <form id="signup" action="thankyou.html">
             
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="first_name" maxlength="30" required><br>
+            <table class="form">
+                
+                <tr>
+                    <td><label for="firstName">First Name:</label></td>
+                    <td>
+                        <input type="text" id="firstName" name="first_name" maxlength="30" required
+                               pattern="[A-Za-z'-]+" 
+                               title="1 to 30 characters. Letters, apostrophes, and dashes only.">
+                    </td>
+                    <td><span id="name_text" class="error-msg"></span></td>
+                </tr>
 
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="last_name" maxlength="30" required><br>
+                <tr>
+                    <td><label for="middleInitial">Middle Initial:</label></td>
+                    <td>
+                        <input type="text" id="middleInitial" name="middle_initial" maxlength="1"
+                               pattern="[A-Za-z]?" 
+                               title="1 character maximum. Letters only. Leave blank if none.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="dob">Date of Birth:</label>
-            <input type="text" id="dob" name="date_of_birth" placeholder="MM/DD/YYYY" required><br>
+                <tr>
+                    <td><label for="lastName">Last Name:</label></td>
+                    <td>
+                        <input type="text" id="lastName" name="last_name" maxlength="30" required
+                               pattern="[A-Za-z'2-5-]+" 
+                               title="1 to 30 characters. Letters, apostrophes, dashes, and suffixes 2 to 5 only.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="address1">Address Line 1:</label>
-            <input type="text" id="address1" name="address_line_1" maxlength="30" required><br>
+                <tr>
+                    <td><label for="dob">Date of Birth:</label></td>
+                    <td>
+                        <input type="date" id="dob" name="date_of_birth" required
+                               title="Required field. Birthdates cannot be set in the future or exceed 120 years ago.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone_number" placeholder="XXX-XXX-XXXX" pattern="\d{3}-\d{3}-\d{4}" required><br>
+                <tr>
+                    <td><label for="memberId">Patient PIN / SSN:</label></td>
+                    <td>
+                        <input type="password" id="memberId" name="secure_id" required
+                               pattern="\d{4,9}"
+                               title="Sensitive account validation ID. Must be between 4 and 9 digits long and completely obscured.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city_name" maxlength="30" required><br>
+                <tr>
+                    <td><label for="email">Email Address:</label></td>
+                    <td>
+                        <input type="email" id="email" name="email_address" required
+                               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                               title="Must match a valid internet layout template format: name@domain.tld">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-        <label for="state">State:</label>
-        <select id="state" name="state_code" required>
-            <option value="">--Select State--</option>
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">District Of Columbia</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-            <option value="PR">Puerto Rico</option>
-        </select><br>
+                <tr>
+                    <td><label for="phone">Phone Number:</label></td>
+                    <td>
+                        <input type="text" id="phone" name="phone_number" placeholder="XXX-XXX-XXXX" required
+                               pattern="\d{3}-\d{3}-\d{4}" 
+                               title="Phone sequence required layout format: 000-000-0000.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email_address" required><br>
+                <tr>
+                    <td><label for="address1">Address Line 1:</label></td>
+                    <td>
+                        <input type="text" id="address1" name="address_line_1" minlength="2" maxlength="30" required
+                               title="Required field. 2 to 30 characters maximum.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="bloodType">Blood Type:</label>
-            <select id="bloodType" name="blood_type">
-                <option value="">--Select--</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB-">AB-</option>
-                <option value="AB+">AB+</option>
-            </select><br>
+                <tr>
+                    <td><label for="city">City:</label></td>
+                    <td>
+                        <input type="text" id="city" name="city_name" minlength="2" maxlength="30" required
+                               title="Required field. 2 to 30 characters maximum.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="symptoms" style="vertical-align: top;">Current Symptoms:</label>
-            <textarea id="symptoms" name="user_symptoms" rows="3" cols="50"></textarea><br>
+                <tr>
+                    <td><label for="state">State:</label></td>
+                    <td>
+                        <select id="state" name="state_code" required title="Please select a state classification identifier code from the list menu options.">
+                            <option value="">--Select State--</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                            <option value="PR">Puerto Rico</option>
+                        </select>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label>Medical Allergies:</label>
-            <input type="checkbox" id="alg1" name="allergies" value="seafood">
-            <label for="alg1" style="width:auto; font-weight:normal;">Seafood</label>
-            
-            <input type="checkbox" id="alg2" name="allergies" value="peanuts">
-            <label for="alg2" style="width:auto; font-weight:normal;">Peanuts</label>
-            
-            <input type="checkbox" id="alg3" name="allergies" value="sulfa">
-            <label for="alg3" style="width:auto; font-weight:normal;">Sulfa Drugs</label>
-            
-            <input type="checkbox" id="alg4" name="allergies" value="penicillin">
-            <label for="alg4" style="width:auto; font-weight:normal;">Penicillin</label>
-            
-            <input type="checkbox" id="alg5" name="allergies" value="latex">
-            <label for="alg5" style="width:auto; font-weight:normal;">Latex</label><br>
+                <tr>
+                    <td><label for="bloodType">Blood Type:</label></td>
+                    <td>
+                        <select id="bloodType" name="blood_type" title="Please select your clinical ABO blood classification sequence configuration group.">
+                            <option value="">--Select--</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB-">AB-</option>
+                            <option value="AB+">AB+</option>
+                        </select>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label>Gender Identity:</label>
-            <input type="radio" id="genM" name="gender" value="male">
-            <label for="genM" style="width:auto; font-weight:normal;">Male</label>
-            
-            <input type="radio" id="genF" name="gender" value="female">
-            <label for="genF" style="width:auto; font-weight:normal;">Female</label>
-            
-            <input type="radio" id="genN" name="gender" value="nonbinary">
-            <label for="genN" style="width:auto; font-weight:normal;">Non-Binary</label><br>
+                <tr>
+                    <td><label>Medical Allergies:</label></td>
+                    <td>
+                        <input type="checkbox" id="alg1" name="allergy_seafood" value="seafood"> <label for="alg1" class="inline-lbl">Seafood</label>
+                        <input type="checkbox" id="alg2" name="allergy_peanuts" value="peanuts"> <label for="alg2" class="inline-lbl">Peanuts</label>
+                        <input type="checkbox" id="alg3" name="allergy_sulfa" value="sulfa"> <label for="alg3" class="inline-lbl">Sulfa Drugs</label>
+                        <input type="checkbox" id="alg4" name="allergy_penicillin" value="penicillin"> <label for="alg4" class="inline-lbl">Penicillin</label>
+                        <input type="checkbox" id="alg5" name="allergy_latex" value="latex"> <label for="alg5" class="inline-lbl">Latex</label>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label>Tobacco User?</label>
-            <input type="radio" id="tobY" name="tobacco" value="yes">
-            <label for="tobY" style="width:auto; font-weight:normal;">Yes</label>
-            
-            <input type="radio" id="tobN" name="tobacco" value="no">
-            <label for="tobN" style="width:auto; font-weight:normal;">No</label><br>
+                <tr>
+                    <td><label>Gender Identity:</label></td>
+                    <td>
+                        <input type="radio" id="genM" name="gender_identity" value="Male"> <label for="genM" class="inline-lbl">Male</label>
+                        <input type="radio" id="genF" name="gender_identity" value="Female"> <label for="genF" class="inline-lbl">Female</label>
+                        <input type="radio" id="genN" name="gender_identity" value="Non-Binary"> <label for="genN" class="inline-lbl">Non-Binary</label>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="health">Rate Health Status:</label>
-            <input type="range" id="health" name="health_rating" min="1" max="10"><br>
+                <tr>
+                    <td><label>Tobacco User?</label></td>
+                    <td>
+                        <input type="radio" id="tobY" name="tobacco_user" value="Yes"> <label for="tobY" class="inline-lbl">Yes</label>
+                        <input type="radio" id="tobN" name="tobacco_user" value="No"> <label for="tobN" class="inline-lbl">No</label>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
+                <tr>
+                    <td><label for="health">Rate Health Status:</label></td>
+                    <td>
+                        <input type="range" id="health" name="health_rating" min="1" max="10" value="5"
+                               oninput="updateSliderDisplay(this.value)" title="Slide the interactive tracking selector element to declare your current global health status metrics.">
+                        <span id="health_val" style="font-weight:bold; margin-left: 10px;">5 / 10</span>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <label for="uid">UserID:</label>
-            <input type="text" id="uid" name="user_id" maxlength="20" placeholder="Max 20 chars" required><br>
-            
-            <label for="pwd">Password:</label>
-            <input type="password" id="pwd" name="password" required><br>
-            
-            <label for="rePwd">Re-enter Password:</label>
-            <input type="password" id="rePwd" name="re_password" required><br>
+                <tr>
+                    <td><label for="symptoms">Current Symptoms:</label></td>
+                    <td>
+                        <textarea id="symptoms" name="user_symptoms" rows="3" cols="50"
+                                  title="Outline physical clinical symptoms here."></textarea>
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
 
-            <br><br>
-            <input type="reset" value="CLEAR AND START OVER" class="form-btn">
-            <input type="submit" value="Submit" class="form-btn">
- 
-            <p style="margin: 5px 0; font-size: 14px; line-height: 1.4;">
-                <strong>CareFirst Medical</strong><br>
+                <tr>
+                    <td><label for="uid">UserID:</label></td>
+                    <td>
+                        <input type="text" id="uid" name="user_id" maxlength="30" placeholder="5-30 characters" required
+                               pattern="^[A-Za-z][A-Za-z0-9_-]{4,29}$"
+                               title="5 to 30 characters. Letters, numbers, hyphens, and underscores allowed. Cannot begin with a digit. No spaces.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
+
+                <tr>
+                    <td><label for="pwd">Password:</label></td>
+                    <td>
+                        <input type="password" id="pwd" name="account_password" required
+                               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=\\\/><.,`~])[A-Za-z\d!@#%^&*()\-_\+=\\\/><.,`~]{8,30}$"
+                               title="8-30 characters long string metrics. Must feature at least 1 uppercase character letter, 1 lowercase letter, 1 number, and 1 special character that is not a quote.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
+
+                <tr>
+                    <td><label for="rePwd">Re-enter Password:</label></td>
+                    <td>
+                        <input type="password" id="rePwd" name="password_verification" required
+                               title="Please re-type your chosen login sequence directly into this check field configuration to ensure correct input match execution.">
+                    </td>
+                    <td><span class="error-msg"></span></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" value="Review Panel" class="form-btn" onclick="getdata1()">
+                        <input type="reset" value="CLEAR AND START OVER" class="form-btn" onclick="removedata1()">
+                        <input type="submit" value="Submit Registration" class="form-btn">
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+
+        <br><br>
+        <div id="outputformdata"></div>
+
+        <hr style="margin-top: 30px;">
+        
+        <div style="display: flex; justify-content: space-between; font-family: sans-serif; font-size: 14px; padding: 15px 5px;">
+            <p style="margin: 0; line-height: 1.4;">
+                <strong>CareFirst Medical Headquarters</strong><br>
                 PO BOX 12345<br>
                 Pearland TX 77584
             </p>
+            <div>
+                <button type="button" style="padding: 10px 20px; font-weight: bold; cursor: pointer; background-color: #f3f4f6; border: 1px solid #ccc; border-radius: 4px;">
+                    CONTACT US
+                </button>
+            </div>
         </div>
+    </div>
 
-        <div>
-            <button type="button" style="padding: 10px 20px; font-weight: bold; cursor: pointer;">
-                CONTACT US
-            </button>
-        </div>
-
-            
-        
-    <script>
-        const d = new Date();
-        let text = d.toLocaleDateString();
-        document.getElementById("today").innerHTML = text;
-    </script>
-    
+    <script src="homework2.js"></script>
 </body>
 </html>
-
 
