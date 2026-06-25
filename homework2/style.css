@@ -1,1 +1,63 @@
+/*
+  Program name: style.css
+  Author: Shafin Husain
+  Date created: 6-18-26
+  Date last edited: 6-18-26
+  Version: 1.0
+  Description: External CSS style sheet for CareFirst Medical Clinic
+*/
 
+body {
+    background-color: powderblue;
+}
+
+
+h2 {
+    margin: 0;
+    font-size: 32px;
+    font-family: 'Georgia', serif;
+    color: #0c4a6e;
+}
+
+a {
+    color: #0284c7;
+}
+
+a:visited {
+    color: #6b21a8;
+}
+
+#Banner {
+    display: flex;
+    align-items: center;
+}
+
+img[name="clinic-logo"] {
+    margin-right: 15px;
+}
+
+.date-box {
+    font-weight: bold;
+    margin-left: auto;
+    align-self: flex-start;
+    padding-top: 10px;
+}
+
+
+label {
+    display: inline-block;
+    width: 160px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.form-btn {
+    background-color: #0284c7;
+    color: #ffffff;            
+    font-size: 16px;            
+    font-weight: bold;
+    padding: 12px 24px;         
+    border: none;              
+    border-radius: 4px;                   
+    margin-right: 15px;        
+}
