@@ -1,1 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareFirst Medical - Patient Registration</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
 
+    <div id="Banner">
+         <img src="logo.jpg" name="clinic-logo" alt="Logo" width="100" height="100">
+         <h2>CareFirst Medical</h2>
+         <div class="date-box">
+              Today's date: <span id="today"></span>
+         </div>
+    </div>
+
+    <hr>
+
+    <div class="form-container">
+        <h3>Patient Intake & Account Provisioning Form</h3>
+        <p class="form-instructions">Please fill out all required fields. Error messages will clear automatically once valid entries are provided.</p>
+
+        <form id="registrationForm" onsubmit="return false;">
+            <table>
+                <tr>
+                    <td><label for="firstName">First Name *</label></td>
+                    <td>
+                        <input type="text" id="firstName" title="1 to 30 characters. Letters, apostrophes, and dashes only." placeholder="e.g., Jane">
+                        <div class="error-container"><span class="error-msg" id="err-firstName"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="middleInitial">Middle Initial</label></td>
+                    <td>
+                        <input type="text" id="middleInitial" maxlength="1" title="Optional. 1 letter max, no numbers." placeholder="e.g., M">
+                        <div class="error-container"><span class="error-msg" id="err-middleInitial"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="lastName">Last Name *</label></td>
+                    <td>
+                        <input type="text" id="lastName" title="1 to 30 characters. Letters, apostrophes, and dashes only." placeholder="e.g., Doe">
+                        <div class="error-container"><span class="error-msg" id="err-lastName"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Date of Birth *</label></td>
+                    <td>
+                        <div class="dob-group">
+                            <input type="number" id="dobMM" placeholder="MM" min="1" max="12" title="Month (1-12)">
+                            <input type="number" id="dobDD" placeholder="DD" min="1" max="31" title="Day (1-31)">
+                            <input type="number" id="dobYYYY" placeholder="YYYY" title="Year (Cannot be in future or >120 years ago)">
+                        </div>
+                        <div class="error-container"><span class="error-msg" id="err-dob"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="ssn">Patient Identifier (9-Digits) *</label></td>
+                    <td>
+                        <input type="password" id="ssn" maxlength="11" title="Must be exactly 9 numbers. Automatically formats dashes." placeholder="XXX-XX-XXXX">
+                        <div class="error-container"><span class="error-msg" id="err-ssn"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="address1">Address Line 1 *</label></td>
+                    <td>
+                        <input type="text" id="address1" title="Required. 2 to 30 characters." placeholder="123 Main St">
+                        <div class="error-container"><span class="error-msg" id="err-address1"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="address2">Address Line 2</label></td>
+                    <td>
+                        <input type="text" id="address2" title="Optional. If entered, must be 2 to 30 characters." placeholder="Apt, Suite, etc.">
+                        <div class="error-container"><span class="error-msg" id="err-address2"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="city">City *</label></td>
+                    <td>
+                        <input type="text" id="city" title="Required. 2 to 30 characters." placeholder="Pearland">
+                        <div class="error-container"><span class="error-msg" id="err-city"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="state">State *</label></td>
+                    <td>
+                        <select id="state" title="Please select a state from the list.">
+                            <option value="">-- Select State --</option>
+                            <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District of Columbia</option>
+                            <option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option>
+                            <option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option>
+                            <option value="PR">Puerto Rico</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option>
+                            <option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option>
+                            <option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                        <div class="error-container"><span class="error-msg" id="err-state"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="zipCode">Zip Code *</label></td>
+                    <td>
+                        <input type="text" id="zipCode" maxlength="5" title="Required. Exactly 5 numeric digits." placeholder="77584">
+                        <div class="error-container"><span class="error-msg" id="err-zipCode"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="email">Email Address *</label></td>
+                    <td>
+                        <input type="text" id="email" title="Required. Must match standard name@domain.tld structure." placeholder="patient@example.com">
+                        <div class="error-container"><span class="error-msg" id="err-email"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Medical History</label></td>
+                    <td>
+                        <fieldset class="form-fieldset">
+                            <legend>Check all that apply</legend>
+                            <label class="check-label"><input type="checkbox" id="alg1" value="Chicken Pox"> Chicken Pox</label><br>
+                            <label class="check-label"><input type="checkbox" id="alg2" value="Measles"> Measles</label><br>
+                            <label class="check-label"><input type="checkbox" id="alg3" value="Covid-19"> Covid-19</label><br>
+                            <label class="check-label"><input type="checkbox" id="alg4" value="Sulfa Allergies"> Sulfa Allergies</label><br>
+                            <label class="check-label"><input type="checkbox" id="alg5" value="Latex Sensitivity"> Latex Sensitivity</label>
+                        </fieldset>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>Vaccination Status *</label></td>
+                    <td>
+                        <fieldset class="form-fieldset">
+                            <legend>Have you completed primary vaccinations?</legend>
+                            <label class="rad-label"><input type="radio" name="vaccine" id="vacY" value="Yes"> Fully Vaccinated</label>&nbsp;&nbsp;
+                            <label class="rad-label"><input type="radio" name="vaccine" id="vacN" value="No"> Not Vaccinated</label>&nbsp;&nbsp;
+                            <label class="rad-label"><input type="radio" name="vaccine" id="vacU" value="Unsure"> Decline to State</label>
+                        </fieldset>
+                        <div class="error-container"><span class="error-msg" id="err-vaccine"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="healthSlider">Desired Copay Ceiling</label></td>
+                    <td>
+                        <div class="slider-wrapper">
+                            <input type="range" id="healthSlider" min="20" max="200" value="50" step="5" title="Slide to choose desired monthly maximum payment capability">
+                            <span id="health_val">$50 / month</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="symptoms">Outline Current Symptoms</label></td>
+                    <td>
+                        <textarea id="symptoms" rows="4" cols="40" title="Describe any alternative conditions or acute reasons for visit." placeholder="Type details here..."></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><hr><h4 class="section-title">Portal Account Provisioning</h4></td>
+                </tr>
+
+                <tr>
+                    <td><label for="uid">Desired User ID *</label></td>
+                    <td>
+                        <input type="text" id="uid" title="5-20 characters. Cannot start with a number. Letters, numbers, hyphens, and underscores only." placeholder="user_name12">
+                        <div class="error-container"><span class="error-msg" id="err-uid"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="pwd">Password *</label></td>
+                    <td>
+                        <input type="password" id="pwd" title="Min 8 characters. Must contain 1 uppercase, 1 lowercase, and 1 digit. Cannot equal User ID.">
+                        
+                        <div id="message" class="pswd-requirements-card">
+                          <h5>Password Requirements:</h5>
+                          <p id="letter" class="invalid">At least <b>one lowercase</b> letter</p>
+                          <p id="capital" class="invalid">At least <b>one uppercase</b> letter</p>
+                          <p id="number" class="invalid">At least <b>one digit</b></p>
+                          <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                        </div>
+                        <div class="error-container"><span class="error-msg" id="err-pwd"></span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="rePwd">Re-enter Password *</label></td>
+                    <td>
+                        <input type="password" id="rePwd" title="Must perfectly match initial password input field.">
+                        <div class="error-container"><span class="error-msg" id="err-rePwd"></span></div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="action-panel">
+                <button type="button" class="form-btn btn-validate" id="btnValidate">VALIDATE FORM</button>
+                <button type="button" class="form-btn btn-debug" id="btnDebug">Review Form Data</button>
+                <button type="button" class="form-btn btn-clear" id="btnClear">Clear Diagnostics</button>
+            </div>
+
+            <div id="submitButtonContainer" class="hidden-submit-zone">
+                <button type="button" class="form-btn btn-submit" id="btnRealSubmit">SUBMIT APPLICATION</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="outputformdata"></div>
+
+    <hr>
+
+    <div class="footer-layout">
+        <div>
+            <strong>CareFirst Medical</strong><br>
+            PO BOX 12345<br>
+            Pearland TX 77584
+        </div>
+        <div>
+            <a href="#">Facebook</a> | <a href="#">Twitter</a>
+        </div>
+    </div>
+
+    <script src="homework3.js"></script>
+    <script>
+        const d = new Date();
+        document.getElementById("today").innerHTML = d.toLocaleDateString();
+    </script>
+</body>
+</html>
