@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Complete - CareFirst Medical</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="Banner">
+         <img src="logo.jpg" name="clinic-logo" alt="Logo" width="100" height="100">
+         <h2>CareFirst Medical</h2>
+         <div class="date-box">
+              Today's date: <span id="today"></span>
+         </div>
+    </div>
+
+    <hr>
+
+    <div style="padding: 60px 20px; text-align: center; background-color: #ffffff; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <h3 style="font-size: 28px; color: #16a34a; margin-bottom: 15px;">Thank you for your submission.</h3>
+        <p style="font-size: 16px; color: #475569;">We will be contacting you shortly.</p>
+    </div>
+
+    <hr>
+
+    <div class="footer-layout">
+        <div>
+            <strong>CareFirst Medical</strong><br>
+            PO BOX 12345<br>
+            Pearland TX 77584
+        </div>
+        <div>
+            <a href="#">Facebook</a> | <a href="#">Twitter</a>
+        </div>
+    </div>
+
+    <script>
+        const d = new Date();
+        document.getElementById("today").innerHTML = d.toLocaleDateString();
+    </script>
+    
+</body>
+</html>
