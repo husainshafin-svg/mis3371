@@ -1,0 +1,224 @@
+body {
+    background-color: powderblue;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 32px;
+    font-family: 'Georgia', serif;
+    color: #0c4a6e;
+}
+
+a {
+    color: #0284c7;
+}
+
+a:visited {
+    color: #6b21a8;
+}
+
+#Banner {
+    display: flex;
+    align-items: center;
+}
+
+img[name="clinic-logo"] {
+    margin-right: 15px;
+}
+
+.date-box {
+    font-weight: bold;
+    margin-left: auto;
+    align-self: flex-start;
+    padding-top: 10px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin: 20px 0;
+}
+
+.form-instructions {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 4px 10px;
+    vertical-align: top;
+}
+
+label {
+    display: inline-block;
+    width: 180px;
+    font-weight: bold;
+    color: #1e293b;
+    padding-top: 8px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    max-width: 320px;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.dob-group {
+    display: flex;
+    gap: 10px;
+    max-width: 320px;
+}
+
+.dob-group input {
+    text-align: center;
+}
+
+.error-container {
+    height: 18px; 
+    margin-top: 2px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.error-msg {
+    color: #dc2626;
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+}
+
+.form-fieldset {
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    max-width: 320px;
+    padding: 10px;
+}
+
+.form-fieldset legend {
+    font-size: 12px;
+    font-weight: bold;
+    color: #475569;
+}
+
+.check-label, .rad-label {
+    width: auto;
+    font-weight: normal;
+    font-size: 13px;
+    display: inline;
+}
+
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 320px;
+    padding-top: 8px;
+}
+
+#health_val {
+    font-weight: bold;
+    color: #0284c7;
+    min-width: 90px;
+}
+
+.section-title {
+    color: #0f172a;
+    margin: 15px 0 5px 0;
+}
+
+.pswd-requirements-card {
+    display: none;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 6px;
+    max-width: 320px;
+    margin-top: 8px;
+}
+
+.pswd-requirements-card h5 {
+    margin: 0 0 8px 0;
+    color: #334155;
+}
+
+.pswd-requirements-card p {
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+.valid { color: #16a34a; }
+.valid::before { content: "✔ "; }
+.invalid { color: #dc2626; }
+.invalid::before { content: "✖ "; }
+
+.action-panel {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.form-btn {
+    color: #ffffff;            
+    font-size: 14px;            
+    font-weight: bold;
+    padding: 10px 20px;         
+    border: none;              
+    border-radius: 4px;                               
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-validate { background-color: #0284c7; }
+.btn-validate:hover { background-color: #0369a1; }
+.btn-debug { background-color: #475569; }
+.btn-debug:hover { background-color: #334155; }
+.btn-clear { background-color: #94a3b8; }
+.btn-clear:hover { background-color: #64748b; }
+
+.hidden-submit-zone {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0fdf4;
+    border: 2px dashed #22c55e;
+    border-radius: 6px;
+    max-width: 800px;
+    display: none;
+    justify-content: center;
+}
+
+.btn-submit {
+    background-color: #16a34a;
+    font-size: 16px;
+    padding: 12px 30px;
+    width: 100%;
+    max-width: 400px;
+}
+.btn-submit:hover { background-color: #15803d; }
+
+.footer-layout {
+    display: flex; 
+    justify-content: space-between; 
+    font-family: sans-serif; 
+    font-size: 14px; 
+    padding: 20px 0;
+}
