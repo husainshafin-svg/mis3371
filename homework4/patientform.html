@@ -1,1 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareFirst Medical Registration</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
 
+    <div class="header" id="myHeader">
+        <div id="Banner">
+            <img src="logo.jpg" name="clinic-logo" alt="Logo" width="60" height="60">
+            <h2>CareFirst Medical</h2>
+            <div class="date-box">
+                <h3 id="greetingMessage" style="margin: 0; color: #16a34a;">Welcome New User</h3>
+                <div id="resetContainer" style="display: none; font-size: 12px; margin-top: 5px;">
+                    <input type="checkbox" id="notYouCheck"> 
+                    <label for="notYouCheck" style="width: auto; padding: 0; color: #dc2626; cursor: pointer;">Not <span id="cookieNameDisplay"></span>? Click here to start as a NEW USER</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <div style="margin-bottom: 20px;">
+            <p style="font-weight: bold;">Health News (Click link to load in frame):</p>
+            <p><a href="https://en.wikipedia.org/wiki/Medicine" target="iframe_a">Load Medical Info</a></p>
+            <iframe src="about:blank" name="iframe_a" title="Health Information Display" style="border:none; height:150px; width:100%; background: #f8fafc;"></iframe>
+        </div>
+
+        <p class="form-instructions">Please complete all fields. Secure data (passwords) will not be saved locally.</p>
+        
+        <table>
+            <tr>
+                <td><label for="firstName">First Name</label></td>
+                <td><input type="text" id="firstName"></td>
+            </tr>
+            <tr>
+                <td><label for="middleInitial">Middle Initial</label></td>
+                <td><input type="text" id="middleInitial" maxlength="1"></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name</label></td>
+                <td><input type="text" id="lastName"></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email</label></td>
+                <td><input type="text" id="email"></td>
+            </tr>
+            <tr>
+                <td><label for="phone">Phone</label></td>
+                <td><input type="text" id="phone"></td>
+            </tr>
+            <tr>
+                <td><label for="dob">Date of Birth</label></td>
+                <td><input type="date" id="dob" style="width: 100%; max-width: 320px; padding: 8px;"></td>
+            </tr>
+            <tr>
+                <td><label for="address1">Address</label></td>
+                <td><input type="text" id="address1"></td>
+            </tr>
+            <tr>
+                <td><label for="city">City</label></td>
+                <td><input type="text" id="city"></td>
+            </tr>
+            <tr>
+                <td><label for="state">State</label></td>
+                <td><select id="state"><option>Loading states...</option></select></td>
+            </tr>
+            <tr>
+                <td><label for="bloodType">Blood Type</label></td>
+                <td>
+                    <select id="bloodType">
+                        <option value="">Select...</option>
+                        <option value="A+">A+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="health">Health Rating (1-10)</label></td>
+                <td>
+                    <div class="slider-wrapper">
+                        <input type="range" id="health" min="1" max="10" value="5" oninput="updateSliderDisplay(this.value)">
+                        <span id="health_val">5 / 10</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="symptoms">Symptoms</label></td>
+                <td><textarea id="symptoms" rows="3"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="uid">User ID</label></td>
+                <td><input type="text" id="uid"></td>
+            </tr>
+            <tr>
+                <td><label for="pwd">Password</label></td>
+                <td>
+                    <input type="password" id="pwd">
+                    <div id="message" class="pswd-requirements-card">
+                        <h5>Password must contain:</h5>
+                        <p id="letter" class="invalid">A lowercase letter</p>
+                        <p id="capital" class="invalid">A capital (uppercase) letter</p>
+                        <p id="number" class="invalid">A number</p>
+                        <p id="length" class="invalid">Minimum 8 characters</p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="rePwd">Confirm Password</label></td>
+                <td>
+                    <input type="password" id="rePwd">
+                    <span id="matchError" class="error-msg"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Gender</label></td>
+                <td>
+                    <input type="radio" id="genM" name="gender" value="Male"> <label for="genM" class="rad-label">Male</label>
+                    <input type="radio" id="genF" name="gender" value="Female"> <label for="genF" class="rad-label">Female</label>
+                    <input type="radio" id="genN" name="gender" value="Non-Binary"> <label for="genN" class="rad-label">Non-Binary</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Tobacco User</label></td>
+                <td>
+                    <input type="radio" id="tobY" name="tobacco" value="Yes"> <label for="tobY" class="rad-label">Yes</label>
+                    <input type="radio" id="tobN" name="tobacco" value="No"> <label for="tobN" class="rad-label">No</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Allergies</label></td>
+                <td>
+                    <input type="checkbox" id="alg1" value="Seafood"> <label for="alg1" class="check-label">Seafood</label>
+                    <input type="checkbox" id="alg2" value="Peanuts"> <label for="alg2" class="check-label">Peanuts</label>
+                    <input type="checkbox" id="alg3" value="Sulfa"> <label for="alg3" class="check-label">Sulfa Drugs</label>
+                    <input type="checkbox" id="alg4" value="Penicillin"> <label for="alg4" class="check-label">Penicillin</label>
+                    <input type="checkbox" id="alg5" value="Latex"> <label for="alg5" class="check-label">Latex</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="rememberMe" style="color: #0284c7;">Remember Me</label></td>
+                <td>
+                    <input type="checkbox" id="rememberMe" checked>
+                    <span style="font-size: 12px; color: #64748b;">Save non-secure data for next time</span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="action-panel">
+            <button type="button" class="form-btn btn-validate" onclick="getdata1()">Review Data</button>
+            <button type="button" class="form-btn btn-clear" onclick="removedata1()">Clear Review</button>
+            <button type="button" class="form-btn btn-submit" onclick="window.location.href='thankyou.html'">Submit Registration</button>
+        </div>
+
+        <div id="outputformdata" class="hidden-submit-zone" style="display: block; background: transparent; border: none; padding: 0;"></div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-layout">
+            <div>
+                <strong>CareFirst Medical</strong><br>
+                PO BOX 12345<br>
+                Pearland TX 77584
+            </div>
+            <div>
+                <a href="#">Facebook</a> | <a href="#">Twitter</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="password.js"></script>
+</body>
+</html>
