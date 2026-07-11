@@ -511,58 +511,93 @@
 
         function fillCityAndStateFields(localities) {
             var locality = localities[0]; 
-            document.getElementById('state').value = locality.state;
+            
+            // Set the state value
+            var stateInput = document.getElementById('state');
+            stateInput.value = locality.state;
             
             var wrapper = document.getElementById('city-input-wrapper');
+            // Clear the wrapper before adding the new input/select
+            wrapper.innerHTML = ''; 
+
+            // If there are multiple cities for one ZIP, create a dropdown (select)
             if(localities.length > 1) { 
                 var select = document.createElement('select');
                 select.id = 'city';
                 select.name = 'city_name';
+                select.required = true;
+                
+                // Populate the dropdown with the looked-up cities
                 for(var i = 0; i < localities.length; i++){
+                    var city = localities[i].city;
                     var option = document.createElement('option');
-                    option.innerHTML = localities[i].city;
-                    option.value = localities[i].city;
-                    if(i == 0) option.selected = true;
+                    option.innerHTML = city;
+                    option.value = city;
+                    if(i === 0) {
+                        option.selected = true;
+                    }
                     select.appendChild(option);
                 }
-                wrapper.innerHTML = '';
                 wrapper.appendChild(select);
-            } else {
+            } 
+            // If there is only one city, recreate the readonly text input
+            else { 
+                var cityText = localities[0].city;
                 var input = document.createElement('input');
-                input.value = locality.city;
                 input.type = 'text';
                 input.id = 'city';
                 input.name = 'city_name';
+                input.value = cityText;
                 input.className = 'readonly-input';
-                input.readOnly = true;
-                wrapper.innerHTML = '';
+                input.readOnly = true; // Prevents typing
+                input.required = true;
                 wrapper.appendChild(input);
             }
+            
+            // Trigger change events so your localStorage function saves the new data
+            stateInput.dispatchEvent(new Event('change', { bubbles: true }));
+            document.getElementById('city').dispatchEvent(new Event('change', { bubbles: true }));
         }
 
+        // Helper function to parse the Google Geocode JSON response
         function geocodeResponseToCityState(geocodeJSON) { 
             var parsedLocalities = [];
-            if(geocodeJSON.results.length) {
+            if(geocodeJSON.results && geocodeJSON.results.length) {
                 for(var i = 0; i < geocodeJSON.results.length; i++){
                     var result = geocodeJSON.results[i];
                     var locality = {};
+                    
                     for(var j=0; j<result.address_components.length; j++){
                         var types = result.address_components[j].types;
                         for(var k = 0; k < types.length; k++) {
-                            if(types[k] == 'locality') {
+                            if(types[k] === 'locality') {
                                 locality.city = result.address_components[j].long_name;
-                            } else if(types[k] == 'administrative_area_level_1') {
+                            } else if(types[k] === 'administrative_area_level_1') {
                                 locality.state = result.address_components[j].short_name;
                             }
                         }
                     }
-                    parsedLocalities.push(locality);
+                    
+                    // Only push if we found a city
+                    if(locality.city) {
+                        parsedLocalities.push(locality);
+                    }
+                    
+                    // Check for additional cities tied to this ZIP code
                     if(result.postcode_localities){
-                        for(var l = 0; l<result.postcode_localities.length;l++) {
-                            parsedLocalities.push({city:result.postcode_localities[l],state:locality.state});
+                        for(var l = 0; l < result.postcode_localities.length; l++) {
+                            // Avoid adding duplicates if the primary locality is in the postcode_localities array
+                            if(result.postcode_localities[l] !== locality.city) {
+                                parsedLocalities.push({
+                                    city: result.postcode_localities[l],
+                                    state: locality.state
+                                });
+                            }
                         }
                     }
                 }
+            } else {
+                console.log('error: no address components found for this ZIP');
             }
             return parsedLocalities;
         }
