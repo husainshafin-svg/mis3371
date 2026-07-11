@@ -512,22 +512,18 @@
         function fillCityAndStateFields(localities) {
             var locality = localities[0]; 
             
-            // Set the state value
             var stateInput = document.getElementById('state');
             stateInput.value = locality.state;
             
             var wrapper = document.getElementById('city-input-wrapper');
-            // Clear the wrapper before adding the new input/select
             wrapper.innerHTML = ''; 
 
-            // If there are multiple cities for one ZIP, create a dropdown (select)
             if(localities.length > 1) { 
                 var select = document.createElement('select');
                 select.id = 'city';
                 select.name = 'city_name';
                 select.required = true;
                 
-                // Populate the dropdown with the looked-up cities
                 for(var i = 0; i < localities.length; i++){
                     var city = localities[i].city;
                     var option = document.createElement('option');
@@ -540,7 +536,6 @@
                 }
                 wrapper.appendChild(select);
             } 
-            // If there is only one city, recreate the readonly text input
             else { 
                 var cityText = localities[0].city;
                 var input = document.createElement('input');
@@ -549,17 +544,15 @@
                 input.name = 'city_name';
                 input.value = cityText;
                 input.className = 'readonly-input';
-                input.readOnly = true; // Prevents typing
+                input.readOnly = true;
                 input.required = true;
                 wrapper.appendChild(input);
             }
             
-            // Trigger change events so your localStorage function saves the new data
             stateInput.dispatchEvent(new Event('change', { bubbles: true }));
             document.getElementById('city').dispatchEvent(new Event('change', { bubbles: true }));
         }
 
-        // Helper function to parse the Google Geocode JSON response
         function geocodeResponseToCityState(geocodeJSON) { 
             var parsedLocalities = [];
             if(geocodeJSON.results && geocodeJSON.results.length) {
@@ -578,15 +571,12 @@
                         }
                     }
                     
-                    // Only push if we found a city
                     if(locality.city) {
                         parsedLocalities.push(locality);
                     }
                     
-                    // Check for additional cities tied to this ZIP code
                     if(result.postcode_localities){
                         for(var l = 0; l < result.postcode_localities.length; l++) {
-                            // Avoid adding duplicates if the primary locality is in the postcode_localities array
                             if(result.postcode_localities[l] !== locality.city) {
                                 parsedLocalities.push({
                                     city: result.postcode_localities[l],
