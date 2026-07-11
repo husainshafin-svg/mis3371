@@ -99,6 +99,26 @@
             cursor: not-allowed;
             color: #64748b;
         }
+        #myProgress {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+        }
+        #myBar {
+            width: 0%;
+            height: 30px;
+            background-color: #04AA6D;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            font-family: verdana;
+            font-size: 13px;
+            transition: width 0.2s ease-out;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -120,6 +140,13 @@
     </div>
 
     <hr>
+
+    <div style="font-family: verdana; padding: 10px 10px 0 10px;">
+        <label style="font-weight: bold; display: block; margin-bottom: 6px;">Registration Progress:</label>
+        <div id="myProgress">
+            <div id="myBar">0%</div>
+        </div>
+    </div>
 
     <div style="font-family: verdana; padding: 10px;">
         <h3>Patient Registration Portal</h3>
@@ -454,6 +481,46 @@
             fieldsToSave.forEach(id => localStorage.removeItem(id));
         }
 
+        function calculateProgress() {
+            var form = document.getElementById('signup');
+            var requiredEls = form.querySelectorAll('[required]');
+            var radioGroups = {};
+            var total = 0;
+            var filled = 0;
+
+            requiredEls.forEach(function(el) {
+                if (el.type === 'radio') {
+                    if (!radioGroups.hasOwnProperty(el.name)) {
+                        radioGroups[el.name] = false;
+                    }
+                    if (el.checked) {
+                        radioGroups[el.name] = true;
+                    }
+                } else {
+                    total++;
+                    if (el.value && el.value.trim() !== '') {
+                        filled++;
+                    }
+                }
+            });
+
+            Object.keys(radioGroups).forEach(function(name) {
+                total++;
+                if (radioGroups[name]) {
+                    filled++;
+                }
+            });
+
+            var percent = total === 0 ? 0 : Math.round((filled / total) * 100);
+            updateProgressBar(percent);
+        }
+
+        function updateProgressBar(percent) {
+            var bar = document.getElementById('myBar');
+            bar.style.width = percent + '%';
+            bar.textContent = percent + '%';
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             fetchConditions();
 
@@ -466,6 +533,7 @@
             } else {
                 document.getElementById("greetingMessage").textContent = "Welcome New user";
             }
+            calculateProgress();
         });
 
         document.getElementById('notYouCheck').addEventListener('change', function() {
@@ -477,6 +545,7 @@
                 document.getElementById("greetingMessage").textContent = "Welcome New user";
                 document.getElementById("resetContainer").style.display = "none";
                 this.checked = false; 
+                calculateProgress();
             }
         });
 
@@ -490,6 +559,15 @@
                 let fName = document.getElementById('firstName').value;
                 if (fName) setCookie("firstName", fName, 48);
             }
+            calculateProgress();
+        });
+
+        document.getElementById('signup').addEventListener('input', function() {
+            calculateProgress();
+        });
+
+        document.getElementById('signup').addEventListener('reset', function() {
+            setTimeout(calculateProgress, 0);
         });
 
         document.getElementById('zip').addEventListener('blur', function(){
