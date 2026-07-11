@@ -25,6 +25,75 @@
         body { 
             padding-bottom: 120px; 
         } 
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1001; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+        }
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 15% auto; 
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%; 
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+        .modal-body {
+            padding: 15px 16px; 
+            font-family: verdana;
+        }
+        .modal-footer {
+            padding: 15px 16px;
+            background-color: #5cb85c;
+            color: white;
+            text-align: center;
+        }
+        .modal-btn {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-cancel {
+            background-color: red;
+            color: white;
+        }
+        .btn-submit {
+            background-color: #04AA6D;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -138,56 +207,8 @@
                             <option value="">--Select State--</option>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="CA">California</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="DC">District Of Columbia</option>
-                            <option value="FL">Florida</option>
-                            <option value="GA">Georgia</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MD">Maryland</option>
-                            <option value="MA">Massachusetts</option>
-                            <option value="MI">Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NJ">New Jersey</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NY">New York</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PA">Pennsylvania</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TN">Tennessee</option>
                             <option value="TX">Texas</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WA">Washington</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option>
-                            <option value="PR">Puerto Rico</option>
+                            <option value="NY">New York</option>
                         </select>
                     </td>
                     <td><span class="error-msg"></span></td>
@@ -216,9 +237,6 @@
                     <td>
                         <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg1" name="allergy_seafood" value="seafood"> <label for="alg1" class="inline-lbl">Seafood</label></span>
                         <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg2" name="allergy_peanuts" value="peanuts"> <label for="alg2" class="inline-lbl">Peanuts</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg3" name="allergy_sulfa" value="sulfa"> <label for="alg3" class="inline-lbl">Sulfa Drugs</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg4" name="allergy_penicillin" value="penicillin"> <label for="alg4" class="inline-lbl">Penicillin</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg5" name="allergy_latex" value="latex"> <label for="alg5" class="inline-lbl">Latex</label></span>
                     </td>
                     <td><span class="error-msg"></span></td>
                 </tr>
@@ -228,7 +246,6 @@
                     <td>
                         <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="genM" name="gender_identity" value="Male" required> <label for="genM" class="inline-lbl">Male</label></span>
                         <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="genF" name="gender_identity" value="Female"> <label for="genF" class="inline-lbl">Female</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="genN" name="gender_identity" value="Non-Binary"> <label for="genN" class="inline-lbl">Non-Binary</label></span>
                     </td>
                     <td><span class="error-msg"></span></td>
                 </tr>
@@ -311,9 +328,8 @@
                 <tr>
                     <td></td>
                     <td>
-                        <input type="button" value="Review Inputs" class="form-btn" onclick="getdata1()">
                         <input type="reset" value="CLEAR AND START OVER" class="form-btn" onclick="removedata1()">
-                        <input type="submit" value="Submit Registration" class="form-btn">
+                        <input type="button" value="Submit" class="form-btn" onclick="openModalCheck()">
                     </td>
                     <td></td>
                 </tr>
@@ -344,6 +360,21 @@
                         CONTACT US
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Check your entries...</h2>
+            </div>
+            <div class="modal-body" id="modal-data-display">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-btn btn-cancel" onclick="closeModal()">GO BACK</button>
+                <button type="button" class="modal-btn btn-submit" onclick="submitRealForm()">SUBMIT</button>
             </div>
         </div>
     </div>
@@ -453,6 +484,55 @@
                 if (fName) setCookie("firstName", fName, 48);
             }
         });
+
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        function openModalCheck() {
+            var form = document.getElementById('signup');
+            
+            if(!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            var fullName = document.getElementById('firstName').value + " " + document.getElementById('middleInitial').value + " " + document.getElementById('lastName').value;
+            var dob = document.getElementById('dob').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address1').value + ", " + document.getElementById('city').value + " " + document.getElementById('state').value;
+            var uid = document.getElementById('uid').value;
+            var healthStatus = document.getElementById('health').value;
+
+            var displayHtml = "<p><strong>Name:</strong> " + fullName + " <span style='float:right'><strong>Date of Birth:</strong> " + dob + "</span></p>";
+            displayHtml += "<p><strong>Address:</strong> " + address + "</p>";
+            displayHtml += "<p><strong>Phone:</strong> " + phone + "</p>";
+            displayHtml += "<p><strong>Email:</strong> " + email + "</p>";
+            displayHtml += "<p><strong>Health Status:</strong> " + healthStatus + "/10</p>";
+            displayHtml += "<p><strong>User ID:</strong> " + uid + "</p>";
+            displayHtml += "<p><strong>Password:</strong> &lt;good&gt;</p>"; 
+
+            document.getElementById('modal-data-display').innerHTML = displayHtml;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function submitRealForm() {
+            document.getElementById('signup').submit();
+        }
     </script>
     <script src="password.js"></script>
 </body>
