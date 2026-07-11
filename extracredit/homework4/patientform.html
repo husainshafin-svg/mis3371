@@ -373,8 +373,8 @@
             <div class="modal-body" id="modal-data-display">
             </div>
             <div class="modal-footer">
-                <button type="button" class="modal-btn btn-cancel" onclick="closeModal()">GO BACK</button>
-                <button type="button" class="modal-btn btn-submit" onclick="submitRealForm()">SUBMIT</button>
+                <input type="button" value="SUBMIT" class="modal-btn btn-submit" onclick="submitRealForm()">
+                <input type="button" value="GO BACK" class="modal-btn btn-cancel" onclick="closeModal()">
             </div>
         </div>
     </div>
@@ -387,7 +387,6 @@
                 let data = await response.text();
                 document.getElementById('fetch-conditions-target').innerHTML = data;
             } catch (error) {
-                console.error("Fetch error:", error);
             }
         }
 
