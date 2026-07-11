@@ -1,17 +1,3 @@
-
-async function fetchStateOptions() {
-    try {
-        let response = await fetch('states.html');
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        let data = await response.text();
-        document.getElementById("state").innerHTML = data;
-    } catch (error) {
-        document.getElementById("state").innerHTML = '<option value="">Error loading states</option>';
-    }
-}
-
 function setCookie(cname, cvalue, exhours) {
     const d = new Date();
     d.setTime(d.getTime() + (exhours * 60 * 60 * 1000)); 
@@ -69,8 +55,6 @@ function clearLocalStorage() {
 }
 
 window.onload = function() {
-    fetchStateOptions();
-
     let user = getCookie("firstName");
     if (user != "") {
         document.getElementById("greetingMessage").textContent = "Welcome back, " + user;
