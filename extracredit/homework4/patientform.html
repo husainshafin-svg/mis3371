@@ -339,6 +339,7 @@
                         <input type="password" id="pwd" name="account_password" required
                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=\\\/><.,`~])[A-Za-z\d!@#%^&*()\-_\+=\\\/><.,`~]{8,30}$"
                                title="8-30 characters long string metrics. Must feature at least 1 uppercase character letter, 1 lowercase letter, 1 number, and 1 special character that is not a quote.">
+                        <input type="checkbox" id="showPwd" onclick="togglePwdVisibility()"> <label for="showPwd" class="inline-lbl" style="width:auto; padding:0;">Show Password</label>
                         
                         <div id="message" style="display:none; background: #f3f4f6; padding: 10px; margin-top: 5px; border-radius: 4px; font-size: 13px;">
                             <p style="margin: 0 0 5px 0; font-weight: bold;">Password must contain the following:</p>
@@ -356,6 +357,7 @@
                     <td>
                         <input type="password" id="rePwd" name="password_verification" required
                                title="Please re-type your chosen login sequence directly into this check field configuration to ensure correct input match execution.">
+                        <input type="checkbox" id="showRePwd" onclick="toggleRePwdVisibility()"> <label for="showRePwd" class="inline-lbl" style="width:auto; padding:0;">Show Password</label>
                     </td>
                     <td><span id="matchError" style="color: red; font-weight: bold;"></span></td>
                 </tr>
@@ -519,6 +521,24 @@
             var bar = document.getElementById('myBar');
             bar.style.width = percent + '%';
             bar.textContent = percent + '%';
+        }
+
+        function togglePwdVisibility() {
+            var x = document.getElementById('pwd');
+            if (x.type === 'password') {
+                x.type = 'text';
+            } else {
+                x.type = 'password';
+            }
+        }
+
+        function toggleRePwdVisibility() {
+            var x = document.getElementById('rePwd');
+            if (x.type === 'password') {
+                x.type = 'text';
+            } else {
+                x.type = 'password';
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
