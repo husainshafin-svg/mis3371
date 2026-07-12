@@ -1,3 +1,13 @@
+/*
+  Program name: style.css
+  Author: Shafin Husain
+  Date created: 7-9-26
+  Date last edited: 7-11-26
+  Version: 1.0
+  Description: CSS stylesheet for CareFirst Medical patient intake form, including layout, form styling, and validation states
+*/
+
+
 body {
     background-color: powderblue;
     font-family: Arial, sans-serif;
