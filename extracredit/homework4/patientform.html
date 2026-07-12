@@ -119,6 +119,93 @@
             transition: width 0.2s ease-out;
             white-space: nowrap;
         }
+        .checkbox-container, .radio-container {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            padding-left: 38px;
+            margin-right: 22px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-family: verdana;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            min-height: 28px;
+        }
+        .checkbox-container input,
+        .radio-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 26px;
+            width: 26px;
+            background-color: #eef2f7;
+            border: 2px solid #cbd5e1;
+            border-radius: 7px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .radio-container .checkmark {
+            border-radius: 50%;
+        }
+        .checkbox-container:hover input ~ .checkmark,
+        .radio-container:hover input ~ .checkmark {
+            background-color: #dbeafe;
+            border-color: #60a5fa;
+        }
+        .checkbox-container input:checked ~ .checkmark,
+        .radio-container input:checked ~ .checkmark {
+            background-color: #04AA6D;
+            border-color: #04AA6D;
+        }
+        .checkbox-container input:focus-visible ~ .checkmark,
+        .radio-container input:focus-visible ~ .checkmark {
+            box-shadow: 0 0 0 3px rgba(4,170,109,0.35);
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .checkbox-container input:checked ~ .checkmark:after,
+        .radio-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .checkbox-container .checkmark:after {
+            left: 8px;
+            top: 3px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .radio-container .checkmark:after {
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.15s ease;
+        }
+        .radio-container input:checked ~ .checkmark:after {
+            transform: translate(-50%, -50%) scale(1);
+        }
     </style>
 </head>
 <body>
@@ -134,8 +221,11 @@
     <div id="greeting-section" style="padding: 10px; text-align: center; background-color: #f0fdf4; border: 1px solid #16a34a; margin: 10px auto; max-width: 800px; font-family: verdana;">
         <h3 id="greetingMessage" style="margin: 0; color: #16a34a;">Welcome New user</h3>
         <div id="resetContainer" style="display: none; font-size: 12px; margin-top: 5px;">
-            <input type="checkbox" id="notYouCheck"> 
-            <label for="notYouCheck" style="width: auto; padding: 0; color: #dc2626; cursor: pointer;">Not <span id="cookieNameDisplay"></span>? Click here to start as a NEW USER</label>
+            <label class="checkbox-container" style="color: #dc2626; font-size: 12px; padding-left: 32px; min-height: 20px;">
+                <input type="checkbox" id="notYouCheck">
+                <span class="checkmark" style="height: 20px; width: 20px;"></span>
+                Not <span id="cookieNameDisplay"></span>? Click here to start as a NEW USER
+            </label>
         </div>
     </div>
 
@@ -270,8 +360,16 @@
                 <tr>
                     <td><label>Medical Allergies:</label></td>
                     <td>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg1" name="allergy_seafood" value="seafood"> <label for="alg1" class="inline-lbl">Seafood</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="checkbox" id="alg2" name="allergy_peanuts" value="peanuts"> <label for="alg2" class="inline-lbl">Peanuts</label></span>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="alg1" name="allergy_seafood" value="seafood">
+                            <span class="checkmark"></span>
+                            Seafood
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="alg2" name="allergy_peanuts" value="peanuts">
+                            <span class="checkmark"></span>
+                            Peanuts
+                        </label>
                     </td>
                     <td><span class="error-msg"></span></td>
                 </tr>
@@ -279,8 +377,16 @@
                 <tr>
                     <td><label>Gender Identity:</label></td>
                     <td>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="genM" name="gender_identity" value="Male" required> <label for="genM" class="inline-lbl">Male</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="genF" name="gender_identity" value="Female"> <label for="genF" class="inline-lbl">Female</label></span>
+                        <label class="radio-container">
+                            <input type="radio" id="genM" name="gender_identity" value="Male" required>
+                            <span class="checkmark"></span>
+                            Male
+                        </label>
+                        <label class="radio-container">
+                            <input type="radio" id="genF" name="gender_identity" value="Female">
+                            <span class="checkmark"></span>
+                            Female
+                        </label>
                     </td>
                     <td><span class="error-msg"></span></td>
                 </tr>
@@ -288,8 +394,16 @@
                 <tr>
                     <td><label>Tobacco User?</label></td>
                     <td>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="tobY" name="tobacco_user" value="Yes" required> <label for="tobY" class="inline-lbl">Yes</label></span>
-                        <span style="display: inline-block; white-space: nowrap; margin-right: 12px;"><input type="radio" id="tobN" name="tobacco_user" value="No"> <label for="tobN" class="inline-lbl">No</label></span>
+                        <label class="radio-container">
+                            <input type="radio" id="tobY" name="tobacco_user" value="Yes" required>
+                            <span class="checkmark"></span>
+                            Yes
+                        </label>
+                        <label class="radio-container">
+                            <input type="radio" id="tobN" name="tobacco_user" value="No">
+                            <span class="checkmark"></span>
+                            No
+                        </label>
                     </td>
                     <td><span class="error-msg"></span></td>
                 </tr>
@@ -317,8 +431,11 @@
                 <tr>
                     <td><label for="rememberMe" style="color: #0284c7; font-weight: bold;">Remember Me:</label></td>
                     <td>
-                        <input type="checkbox" id="rememberMe" checked>
-                        <span style="font-size: 12px; color: #64748b;">Save non-secure data for next time</span>
+                        <label class="checkbox-container" style="margin-right: 0;">
+                            <input type="checkbox" id="rememberMe" checked>
+                            <span class="checkmark"></span>
+                            <span style="font-size: 12px; color: #64748b;">Save non-secure data for next time</span>
+                        </label>
                     </td>
                     <td></td>
                 </tr>
@@ -339,7 +456,11 @@
                         <input type="password" id="pwd" name="account_password" required
                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#%^&*()\-_\+=\\\/><.,`~])[A-Za-z\d!@#%^&*()\-_\+=\\\/><.,`~]{8,30}$"
                                title="8-30 characters long string metrics. Must feature at least 1 uppercase character letter, 1 lowercase letter, 1 number, and 1 special character that is not a quote.">
-                        <input type="checkbox" id="showPwd" onclick="togglePwdVisibility()"> <label for="showPwd" class="inline-lbl" style="width:auto; padding:0;">Show Password</label>
+                        <label class="checkbox-container" style="font-size: 13px; vertical-align: middle; margin-left: 6px;">
+                            <input type="checkbox" id="showPwd" onclick="togglePwdVisibility()">
+                            <span class="checkmark" style="height: 20px; width: 20px;"></span>
+                            Show Password
+                        </label>
                         <span id="pwdCapsWarning" style="display:none; color: red; font-weight: bold; margin-left: 10px;">Caps Lock is on</span>
                         
                         <div id="message" style="display:none; background: #f3f4f6; padding: 10px; margin-top: 5px; border-radius: 4px; font-size: 13px;">
@@ -358,7 +479,11 @@
                     <td>
                         <input type="password" id="rePwd" name="password_verification" required
                                title="Please re-type your chosen login sequence directly into this check field configuration to ensure correct input match execution.">
-                        <input type="checkbox" id="showRePwd" onclick="toggleRePwdVisibility()"> <label for="showRePwd" class="inline-lbl" style="width:auto; padding:0;">Show Password</label>
+                        <label class="checkbox-container" style="font-size: 13px; vertical-align: middle; margin-left: 6px;">
+                            <input type="checkbox" id="showRePwd" onclick="toggleRePwdVisibility()">
+                            <span class="checkmark" style="height: 20px; width: 20px;"></span>
+                            Show Password
+                        </label>
                         <span id="rePwdCapsWarning" style="display:none; color: red; font-weight: bold; margin-left: 10px;">Caps Lock is on</span>
                     </td>
                     <td><span id="matchError" style="color: red; font-weight: bold;"></span></td>
